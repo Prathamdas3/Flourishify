@@ -29,11 +29,13 @@ export const showNote = async (req, res) => {
 //create a note
 export const createNote = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, userId } = req.body;
+    console.log(title, description);
     const newNote = await prisma.notes.create({
       data: {
         title: title,
         description: description,
+        User: { connect: { id: userId } },
       },
     });
     res.status(201).json(newNote);
