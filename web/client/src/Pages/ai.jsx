@@ -8,7 +8,7 @@ const ai = () => {
       'content-type': 'application/json',
     };
     const body = JSON.stringify(prompt);
-    const URL = 'http://localhost:3000/ai/';
+    const URL = 'flourishify.vercel.app/ai/';
     try {
       const result = await fetch(URL, {
         method: 'POST',
