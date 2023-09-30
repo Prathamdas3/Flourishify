@@ -1,13 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
 import UserSignUp from './Routes/user.js';
 import Notes from './Routes/Notes.js';
 import Todo from './Routes/Todo.js';
+import AiPage from './Routes/ai.js';
 
-dotenv.config();
+config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use('/auth', UserSignUp);
 app.use('/notes', Notes);
 app.use('/todo', Todo);
+app.use('/ai', AiPage);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello it is working');
