@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ai = () => {
   const [prompt, setPrompt] = useState();
@@ -8,21 +8,43 @@ const ai = () => {
       'content-type': 'application/json',
     };
     const body = JSON.stringify(prompt);
-    const URL = 'flourishify.vercel.app/ai/';
+    const URL = 'https://flourishify--prathamdas3.repl.co/ai/';
     try {
       const result = await fetch(URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers,
         prompt: body,
       });
-      const jsonData = await result.json();
-      setResponse(jsonData.response);
+      // const jsonData = await result.json();
+      console.log(result);
+      // setResponse(jsonData.response);
     } catch (error) {
       console.error(error);
       throw new Error(error);
     }
   };
-
+  useEffect(() => {
+    const getResult = async () => {
+      const URL = 'https://flourishify--prathamdas3.repl.co/ai/';
+      const headers = {
+        'content-type': 'application/json',
+      };
+      try {
+        const data = await fetch(URL, {
+          method: 'GET',
+          mode: 'no-cors',
+          headers,
+        });
+        const jsonData = await data.json();
+        console.log(jsonData);
+        setResponse(jsonData.response);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getResult();
+  }, []);
   return (
     <>
       <textarea
