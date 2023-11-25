@@ -18,8 +18,8 @@ export default function landingPage() {
         <Link to="/ai">
           <Card title="AI Friend" />
         </Link>
-        <Link to="/games">
-          <Card title="Games" />
+        <Link to="/pomo">
+          <Card title="Timer" />
         </Link>
       </div>
     </div>
